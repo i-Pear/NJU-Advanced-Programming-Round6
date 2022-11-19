@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Class.h"
 #include "ClassWithFixedSize.h"
+#include <functional>
 
 const ClassWithFixedSize*Char=new ClassWithFixedSize(1);
 const ClassWithFixedSize*Int=new ClassWithFixedSize(4);
