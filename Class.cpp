@@ -1,14 +1,14 @@
 #include "Class.h"
 
-void Class::add_inherit_class(const Class*){
+void Class::add_inherit_class(const Class* c){
 
 }
 
-void Class::add_virtual_inherit_class(const Class*){
+void Class::add_virtual_inherit_class(const Class* c){
 
 }
 
-void Class::add_member_object(const Class*){
+void Class::add_member_object(const Class* c){
 
 }
 
