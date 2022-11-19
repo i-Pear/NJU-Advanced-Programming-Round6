@@ -132,6 +132,29 @@ bool test8(){
 }
 
 bool test9(){
+/**
+
+#include <iostream>
+#pragma pack(1)
+using namespace std;
+
+class c1{
+public:
+    int f1(){
+        return 9012;
+    }
+    int f2(){
+        return 9015;
+    }
+};
+
+int main(){
+    c1 c1;
+    cout<<c1.f1()<<endl;
+    cout<<c1.f2()<<endl;
+}
+
+*/
     auto c1=new Class;
     c1->add_member_function("f1", []{ return 9012; });
     c1->add_member_function("f2", []{ return 9015; });
@@ -329,6 +352,7 @@ bool test18(){
 
 #include <iostream>
 #pragma pack(1)
+using namespace std;
 
 class c1{
     int a;
@@ -339,7 +363,7 @@ class c2: public c1{
 public:
     char c;
     int f2(){
-        return 2;
+        return 22;
     }
 };
 
@@ -392,7 +416,7 @@ int main(){
     auto c2=new Class;
     c2->add_inherit_class(c1);
     c2->add_member_object(Char);
-    c2->add_member_function("f2", []{return 2;});
+    c2->add_member_function("f2", []{return 22;});
     auto c3=new Class;
     c3->add_inherit_class(c1);
     c3->add_member_object(Int);
@@ -415,7 +439,7 @@ int main(){
     EXPECTED(c4->get_class_size(),25)
     EXPECTED(c5->get_class_size(),1)
     EXPECTED(c6->get_class_size(),51)
-    EXPECTED(c6->call_member_function("f2"),2)
+    EXPECTED(c6->call_member_function("f2"),22)
     EXPECTED(c6->call_member_function("f3"),3)
     EXPECTED(c6->call_member_function("f4"),4)
     EXPECTED(c6->call_member_function("f5"),5)
