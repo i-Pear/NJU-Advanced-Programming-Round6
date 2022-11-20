@@ -7,7 +7,7 @@
  * 此类仅用于构建测试用例中的成员变量, 不会被其他类继承
  * 此类与需要实现的部分无关
  */
-class ClassWithFixedSize : public Class{
+class ClassWithFixedSize final: public Class{
 private:
     int fixed_size;
 
