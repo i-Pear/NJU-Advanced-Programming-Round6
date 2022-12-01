@@ -222,12 +222,12 @@ int main() {
     } else if (test_id == 18) {
         passed = test18();
     } else{
-        std::cout<<"Testcase "<<test_id<<" is hidden!";
+        std::cout<<"Testcase "<<test_id<<" is hidden!\n";
         return 0;
     }
     if (passed) {
-        std::cout << "Test " << test_id << " passed";
+        std::cout << "Test " << test_id << " passed\n";
     } else {
-        std::cout << "Test " << test_id << " failed";
+        std::cout << "Test " << test_id << " failed\n";
     }
 }
