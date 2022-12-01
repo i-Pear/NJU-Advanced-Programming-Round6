@@ -9,7 +9,7 @@ const ClassWithFixedSize *Int = new ClassWithFixedSize(4);
 #define EXPECTED(exp, val) if(exp!=val) return false;
 
 bool test1() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     EXPECTED(c1->get_class_size(), 1)
     return true;
 }
@@ -33,15 +33,15 @@ int main(){
 }
 
 */
-    Class *c1 = new Class;
-    Class *c2 = new Class;
+    Class *c1 = new Class();
+    Class *c2 = new Class();
     c2->add_inherit_class(c1);
     EXPECTED(c2->get_class_size(), 1)
     return true;
 }
 
 bool test3() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_object(Int);
     c1->add_member_object(Int);
     c1->add_member_object(Char);
@@ -76,16 +76,16 @@ int main(){
    std::cout << sizeof(C3);
 }
 */
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_object(Int);
     c1->add_member_object(Int);
     c1->add_member_object(Char);
     EXPECTED(c1->get_class_size(), 9)
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_member_object(Int);
     c2->add_inherit_class(c1);
     EXPECTED(c2->get_class_size(), 13)
-    Class *c3 = new Class;
+    Class *c3 = new Class();
     c3->add_inherit_class(c2);
     c3->add_member_object(Int);
     c3->add_member_object(Char);
@@ -94,7 +94,7 @@ int main(){
 }
 
 bool test5() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_function("f1", [] { return 1; });
     c1->add_member_function("f2", [] { return 2; });
     EXPECTED(c1->get_class_size(), 1)
@@ -102,10 +102,10 @@ bool test5() {
 }
 
 bool test6() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_function("f1", [] { return 1; });
     c1->add_member_function("f2", [] { return 2; });
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_inherit_class(c1);
     c2->add_member_function("f2", [] { return 3; });
     EXPECTED(c2->get_class_size(), 1)
@@ -113,7 +113,7 @@ bool test6() {
 }
 
 bool test7() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_object(Int);
     c1->add_member_object(Int);
     c1->add_member_object(Int);
@@ -124,14 +124,14 @@ bool test7() {
 }
 
 bool test8() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_object(Int);
     c1->add_member_object(Int);
     c1->add_member_object(Int);
     c1->add_member_function("f1", [] { return 1; });
     c1->add_member_function("f2", [] { return 2; });
     EXPECTED(c1->get_class_size(), 4 * 3)
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_inherit_class(c1);
     c2->add_member_object(Char);
     EXPECTED(c2->get_class_size(), 4 * 3 + 1)
@@ -162,7 +162,7 @@ int main(){
 }
 
 */
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_function("f1", [] { return 9012; });
     c1->add_member_function("f2", [] { return 9015; });
     EXPECTED(c1->call_member_function("f1"), 9012)
@@ -171,12 +171,12 @@ int main(){
 }
 
 bool test10() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_function("f1", [] { return 2948; });
     c1->add_member_function("f2", [] { return 859; });
     EXPECTED(c1->call_member_function("f1"), 2948)
     EXPECTED(c1->call_member_function("f2"), 859)
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_inherit_class(c1);
     c2->add_member_function("f1", [] { return 34; });
     c2->add_member_function("f3", [] { return 847; });
@@ -187,7 +187,7 @@ bool test10() {
 }
 
 bool test11() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_function("f1", [] { return 8473; });
     c1->add_member_function("f2", [] { return 123; });
     EXPECTED(c1->call_member_function("f1"), 8473)
@@ -197,13 +197,13 @@ bool test11() {
 }
 
 bool test12() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_function("f1", [] { return 23; });
     c1->add_member_function("f2", [] { return 1313; });
     EXPECTED(c1->call_member_function("f1"), 23)
     EXPECTED(c1->call_member_function("f2"), 1313)
     EXPECTED(c1->get_class_size(), 1)
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_inherit_class(c1);
     c2->add_member_function("f1", [] { return 14; });
     c2->add_member_function("f3", [] { return 827; });
@@ -215,7 +215,7 @@ bool test12() {
 }
 
 bool test13() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_object(new ClassWithFixedSize(1));
     c1->add_member_object(new ClassWithFixedSize(2));
     c1->add_member_object(new ClassWithFixedSize(3));
@@ -245,7 +245,7 @@ bool test13() {
 }
 
 bool test14() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_function("f2", [] { return 123; });
     c1->add_member_object(new ClassWithFixedSize(100));
     c1->add_member_object(new ClassWithFixedSize(10));
@@ -253,7 +253,7 @@ bool test14() {
     EXPECTED(c1->call_member_function("f1"), 8473)
     EXPECTED(c1->call_member_function("f2"), 123)
     EXPECTED(c1->get_class_size(), 110)
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_member_object(new ClassWithFixedSize(1000));
     c2->add_member_object(new ClassWithFixedSize(10));
     c2->add_member_function("f3", [] { return 653; });
@@ -268,56 +268,56 @@ bool test14() {
 
 bool test15() {
     // multi -> one
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_object(new ClassWithFixedSize(100));
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_member_object(new ClassWithFixedSize(200));
-    Class *c3 = new Class;
+    Class *c3 = new Class();
     c3->add_member_object(new ClassWithFixedSize(300));
-    Class *c4 = new Class;
+    Class *c4 = new Class();
     c4->add_inherit_class(c1);
     c4->add_inherit_class(c2);
     c4->add_inherit_class(c3);
     EXPECTED(c4->get_class_size(), 600)
-    Class *c5 = new Class;
+    Class *c5 = new Class();
     c5->add_member_object(new ClassWithFixedSize(10));
-    Class *c6 = new Class;
+    Class *c6 = new Class();
     c6->add_member_object(new ClassWithFixedSize(20));
-    Class *c7 = new Class;
+    Class *c7 = new Class();
     c7->add_member_object(new ClassWithFixedSize(30));
-    Class *c8 = new Class;
+    Class *c8 = new Class();
     c8->add_inherit_class(c5);
     c8->add_inherit_class(c6);
     c8->add_inherit_class(c7);
     EXPECTED(c8->get_class_size(), 60)
-    Class *c9 = new Class;
+    Class *c9 = new Class();
     c9->add_inherit_class(c4);
     c9->add_inherit_class(c8);
     EXPECTED(c9->get_class_size(), 660)
-    Class *c10 = new Class;
+    Class *c10 = new Class();
     c10->add_inherit_class(c9);
     EXPECTED(c10->get_class_size(), 660)
     return true;
 }
 
 bool test16() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_function("f1", [] { return 1; });
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_member_function("f2", [] { return 2; });
-    Class *c3 = new Class;
+    Class *c3 = new Class();
     c3->add_inherit_class(c1);
     c3->add_inherit_class(c2);
     c3->add_member_function("f3", [] { return 3; });
-    Class *c4 = new Class;
+    Class *c4 = new Class();
     c4->add_member_function("f4", [] { return 4; });
-    Class *c5 = new Class;
+    Class *c5 = new Class();
     c5->add_member_function("f5", [] { return 5; });
-    Class *c6 = new Class;
+    Class *c6 = new Class();
     c6->add_inherit_class(c4);
     c6->add_inherit_class(c5);
     c6->add_member_function("f6", [] { return 6; });
-    Class *c7 = new Class;
+    Class *c7 = new Class();
     c7->add_inherit_class(c3);
     c7->add_inherit_class(c6);
     c7->add_member_function("f7", [] { return 77; });
@@ -334,17 +334,17 @@ bool test16() {
 
 bool test17() {
     // diamond
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_object(new ClassWithFixedSize(100));
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_inherit_class(c1);
     c2->add_member_function("f2", [] { return 2; });
     c2->add_member_object(new ClassWithFixedSize(201));
-    Class *c3 = new Class;
+    Class *c3 = new Class();
     c3->add_inherit_class(c1);
     c3->add_member_function("f3", [] { return 3; });
     c3->add_member_object(new ClassWithFixedSize(302));
-    Class *c4 = new Class;
+    Class *c4 = new Class();
     c4->add_inherit_class(c2);
     c4->add_inherit_class(c3);
     c4->add_member_object(Int);
@@ -417,25 +417,25 @@ int main(){
     cout<<c6.f5()<<endl;
 }
  */
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_object(Int);
     c1->add_member_object(Int);
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_inherit_class(c1);
     c2->add_member_object(Char);
     c2->add_member_function("f2", [] { return 22; });
-    Class *c3 = new Class;
+    Class *c3 = new Class();
     c3->add_inherit_class(c1);
     c3->add_member_object(Int);
     c3->add_member_function("f3", [] { return 3; });
-    Class *c4 = new Class;
+    Class *c4 = new Class();
     c4->add_inherit_class(c2);
     c4->add_inherit_class(c3);
     c4->add_member_object(Int);
     c4->add_member_function("f4", [] { return 4; });
-    Class *c5 = new Class;
+    Class *c5 = new Class();
     c5->add_member_function("f5", [] { return 5; });
-    Class *c6 = new Class;
+    Class *c6 = new Class();
     c6->add_inherit_class(c4);
     c6->add_inherit_class(c5);
     c6->add_member_object(c4);
@@ -454,7 +454,7 @@ int main(){
 }
 
 bool test19() {
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_virtual_member_function("f1", [] { return 4857; });
     c1->add_member_function("f2", [] { return 419; });
     EXPECTED(c1->get_class_size(), 8)
@@ -484,11 +484,11 @@ int main(){
     cout<<sizeof(c3)<<endl;
 }
      */
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_virtual_member_function("f1", [] { return 1; });
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_virtual_member_function("f2", [] { return 2; });
-    Class *c3 = new Class;
+    Class *c3 = new Class();
     c3->add_inherit_class(c1);
     c3->add_inherit_class(c2);
     c3->add_virtual_member_function("f2", [] { return 3; });
@@ -516,9 +516,9 @@ int main(){
     cout<<sizeof(c2)<<endl;
 }
      */
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     EXPECTED(c1->get_class_size(), 1)
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_virtual_inherit_class(c1);
     EXPECTED(c2->get_class_size(), 8)
     return true;
@@ -550,18 +550,18 @@ int main(){
 }
  */
     // diamond virtual
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_member_object(new ClassWithFixedSize(100));
     EXPECTED(c1->get_class_size(), 100)
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_virtual_inherit_class(c1);
     c2->add_member_object(new ClassWithFixedSize(10));
     EXPECTED(c2->get_class_size(), 118)
-    Class *c3 = new Class;
+    Class *c3 = new Class();
     c3->add_virtual_inherit_class(c1);
     c3->add_member_object(new ClassWithFixedSize(5));
     EXPECTED(c3->get_class_size(), 113)
-    Class *c4 = new Class;
+    Class *c4 = new Class();
     c4->add_inherit_class(c2);
     c4->add_inherit_class(c3);
     c4->add_member_object(Int);
@@ -594,15 +594,15 @@ int main(){
     cout<<sizeof(c3)<<endl;
 }
      */
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_virtual_member_function("f1", [] { return 1; });
     EXPECTED(c1->get_class_size(), 8)
     EXPECTED(c1->call_member_function("f1"), 1)
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_member_function("f2", [] { return 2; });
     EXPECTED(c2->get_class_size(), 1)
     EXPECTED(c2->call_member_function("f2"), 2)
-    Class *c3 = new Class;
+    Class *c3 = new Class();
     c3->add_inherit_class(c1);
     c3->add_inherit_class(c2);
     c3->add_member_object(c1);
@@ -651,23 +651,23 @@ int main(){
 }
      */
     if (!test23())return false;
-    Class *c1 = new Class;
+    Class *c1 = new Class();
     c1->add_virtual_member_function("f1", [] { return 1; });
-    Class *c2 = new Class;
+    Class *c2 = new Class();
     c2->add_virtual_member_function("f2", [] { return 1; });
-    Class *c3 = new Class;
+    Class *c3 = new Class();
     c3->add_inherit_class(c1);
     c3->add_inherit_class(c2);
     c3->add_virtual_member_function("f3", [] { return 1; });
-    Class *c4 = new Class;
+    Class *c4 = new Class();
     c4->add_virtual_member_function("f4", [] { return 1; });
-    Class *c5 = new Class;
+    Class *c5 = new Class();
     c5->add_virtual_member_function("f5", [] { return 1; });
-    Class *c6 = new Class;
+    Class *c6 = new Class();
     c6->add_inherit_class(c4);
     c6->add_inherit_class(c5);
     c6->add_virtual_member_function("f6", [] { return 1; });
-    Class *c7 = new Class;
+    Class *c7 = new Class();
     c7->add_inherit_class(c3);
     c7->add_inherit_class(c6);
     c7->add_virtual_member_function("f7", [] { return 1; });
@@ -705,12 +705,12 @@ int main(){
     cout<<sizeof(c6)<<endl;
 }
      */
-    Class *c1 = new Class; // 100
-    Class *c2 = new Class; // 100+200
-    Class *c3 = new Class; // 100+300
-    Class *c4 = new Class; // 300+
-    Class *c5 = new Class;
-    Class *c6 = new Class;
+    Class *c1 = new Class(); // 100
+    Class *c2 = new Class(); // 100+200
+    Class *c3 = new Class(); // 100+300
+    Class *c4 = new Class(); // 300+
+    Class *c5 = new Class();
+    Class *c6 = new Class();
     c6->add_inherit_class(c4);
     EXPECTED(c6->get_class_size(), 1)
     c6->add_member_object(c5);
