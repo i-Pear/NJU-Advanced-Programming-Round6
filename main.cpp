@@ -763,9 +763,9 @@ int main() {
     std::cin >> test_id;
     bool pass = tests[test_id - 1]();
     if (pass) {
-        std::cout << "TesT 23 passEd\n";
-    }else{
-        std::cout << "TesT 23 failed\n";
+        std::cout << "TesT " << test_id << " passEd\n";
+    } else {
+        std::cout << "TesT " << test_id << " failed\n";
     }
     std::cout << "Eof";
 }
