@@ -765,5 +765,4 @@ int main() {
             std::cout << "Test " << test_id << " failed\n";
         }
     }
-    std::cout << "Eof";
 }
