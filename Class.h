@@ -23,13 +23,9 @@ public:
     std::vector<const Class*> member_objects;
     std::map<std::string,int (*)()> member_functions;
     std::vector<const Class*> inherits;
-    std::vector<const Class*> v_inherits;
 
     bool _call_member_function(const std::string& func_name,int& res)const;
-    int _get_class_size(std::set<const Class*>& vis) const;
-    int _get_virtual_func_table_size() const;
-    bool has_virtual_func=false;
-    bool has_virtual_inherit=false;
+    int _get_class_size() const;
 };
 
 #endif //CLASS_H
