@@ -757,13 +757,13 @@ int main() {
             test24,
             test25,
     };
-    int test_id;
-    std::cin >> test_id;
-    bool pass = tests[test_id - 1]();
-    if (pass) {
-        std::cout << "TesT " << test_id << " passEd\n";
-    } else {
-        std::cout << "TesT " << test_id << " failed\n";
+    for(int test_id=1;test_id<=25;test_id++){
+        bool pass = tests[test_id - 1]();
+        if (pass) {
+            std::cout << "Test " << test_id << " passed\n";
+        } else {
+            std::cout << "Test " << test_id << " failed\n";
+        }
     }
     std::cout << "Eof";
 }
