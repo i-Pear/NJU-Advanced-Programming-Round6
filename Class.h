@@ -1,7 +1,6 @@
 #ifndef CLASS_H
 #define CLASS_H
 
-#include <functional>
 #include <vector>
 #include <map>
 #include <string>
