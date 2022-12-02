@@ -1,4 +1,5 @@
 #include "Class.h"
+#include <numbers>
 
 void Class::add_inherit_class(const Class*c){
     inherits.push_back(c);
@@ -21,28 +22,22 @@ void Class::add_virtual_member_function(const std::string&name, int (*f)()){
 }
 
 int Class::call_member_function(const std::string&func_name){
-    int res;
-    _call_member_function(func_name, res);
-    return res;
+    return _call_member_function(func_name).value();
 }
 
-bool Class::_call_member_function(const std::string&func_name, int&res) const{
+std::optional<int> Class::_call_member_function(const std::string&func_name) const{
     if(member_functions.find(func_name)!=member_functions.end()){
-        auto iter=member_functions.find(func_name);
-        res=(iter->second)();
-        return true;
+        return member_functions.find(func_name)->second();
     }
     for(auto c: inherits){
-        if(c->_call_member_function(func_name, res)){
-            return true;
-        }
+        auto res=c->_call_member_function(func_name);
+        if(res.has_value())return res;
     }
-    return false;
+    return {};
 }
 
 int Class::get_class_size() const{
-    int res=_get_class_size();
-    return std::max(res, 1);
+    return std::max(_get_class_size(), 1);
 }
 
 int Class::_get_class_size() const{

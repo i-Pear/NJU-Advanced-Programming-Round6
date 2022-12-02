@@ -5,7 +5,7 @@
 #include <vector>
 #include <map>
 #include <string>
-#include <set>
+#include <optional>
 
 class Class{
 public:
@@ -24,7 +24,7 @@ public:
     std::map<std::string,int (*)()> member_functions;
     std::vector<const Class*> inherits;
 
-    bool _call_member_function(const std::string& func_name,int& res)const;
+    std::optional<int> _call_member_function(const std::string& func_name)const;
     int _get_class_size() const;
 };
 
