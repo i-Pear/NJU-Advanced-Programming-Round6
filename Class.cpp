@@ -1,5 +1,4 @@
 #include "Class.h"
-#include <numbers>
 
 void Class::add_inherit_class(const Class*c){
     inherits.push_back(c);
